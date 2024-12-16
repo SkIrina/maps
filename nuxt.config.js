@@ -21,6 +21,7 @@ export default {
       { name: "format-detection", content: "telephone=no" },
       { name: "robots", content: "noindex" },
     ],
+    link: [{ rel: "icon", type: "image/x-icon", href: `/favicon.ico` }],
   },
 
   // Auto import components: https://go.nuxtjs.dev/config-components
