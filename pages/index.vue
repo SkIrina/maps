@@ -17,7 +17,7 @@ export default {
         moveToNavigation() {
             this.increment()
             const fallbackUrl = `https://www.google.co.jp/maps/dir/?api=1&destination=35.487676,133.049012&travelmode=driving`;
-            window.location.href = fallbackUrl;
+            window.open(fallbackUrl);
         },
         increment() {
             this.count++
