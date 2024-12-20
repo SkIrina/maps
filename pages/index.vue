@@ -43,8 +43,7 @@ export default {
             this.log += `[${now.toLocaleTimeString('ja-JP')}] ${latitude}, ${longitude} \n`;
         },
         error(error) {
-            this.log += "Error: \n";
-            this.log += error;
+            this.log += `ERROR(${error.code}): ${error.message}`;
         }
     }
 }
