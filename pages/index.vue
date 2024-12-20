@@ -3,6 +3,7 @@
         <button @click="moveToNavigation">ナビ</button>
         <span>https://www.google.co.jp/maps/dir/?api=1&destination=35.487676,133.049012&travelmode=driving</span>
         <p @click="increment">クリック: {{ count }}</p>
+        <p id="locations">{{ log }}</p>
     </div>
 </template>
 
@@ -10,8 +11,12 @@
 export default {
     data() {
         return {
-            count: 0
+            count: 0,
+            log: ''
         }
+    },
+    mounted() {
+        this.geoFindMe();
     },
     methods: {
         moveToNavigation() {
@@ -21,6 +26,25 @@ export default {
         },
         increment() {
             this.count++
+        },
+        geoFindMe() {
+            if (!navigator.geolocation) {
+                this.log += "ジオロケーションがブラウザでサポートされていません";
+            } else {
+                this.log += "位置情報を取得し、変更を追跡...\n";
+                navigator.geolocation.watchPosition(this.success, this.error);
+            }
+        },
+        success(position) {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+
+            const now = new Date();
+            this.log += `[${now.toLocaleTimeString('ja-JP')}] ${latitude}, ${longitude} \n`;
+        },
+        error(error) {
+            this.log += "Error: \n";
+            this.log += error;
         }
     }
 }
@@ -29,5 +53,9 @@ export default {
 <style>
 button {
     padding-inline: 20px;
+}
+
+#locations {
+    white-space: pre;
 }
 </style>
