@@ -1,5 +1,6 @@
 <template>
     <div>
+        <p>pull-to-refresh / 引っ張って更新するのは禁止</p>
         <button @click="moveToNavigation">ナビ</button>
         <span>https://www.google.co.jp/maps/dir/?api=1&destination=35.487676,133.049012&travelmode=driving</span>
         <p @click="increment">クリック: {{ count }}</p>
@@ -50,6 +51,10 @@ export default {
 </script>
 
 <style>
+body {
+    overscroll-behavior-y: contain;
+}
+
 button {
     padding-inline: 20px;
 }
